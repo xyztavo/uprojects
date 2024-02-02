@@ -12,7 +12,7 @@ This is a project to display my repositories of github, it uses some really cool
 </p>
 
 <p align="center">
-  <img alt="License" src="">
+  <img alt="License" src="https://raw.githubusercontent.com/gustafer/projects-hub/main/src/assets/readme-banner.png">
 </p>
 
 <br>
