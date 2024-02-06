@@ -40,7 +40,7 @@ export function Repos() {
                 <div key='card' className='flex  justify-center gap-10 p-10 flex-row min-w-54 flex-wrap'>
                     {repos?.map((repo: RepositoryType) => {
                         return (
-                            <Card key={repo.full_name} className='w-[15rem] h-[20rem] text-center m-auto flex flex-col justify-center'>
+                            <Card key={repo.full_name} className='w-[15rem] h-[20rem] text-center flex flex-col justify-center'>
                                 <CardHeader>
                                     <CardTitle >{repo.name}</CardTitle>
                                     <CardDescription>{repo.full_name}</CardDescription>
