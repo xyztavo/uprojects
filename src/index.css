@@ -107,6 +107,7 @@
   border-radius: 0.5rem;
   margin: 1rem;
   border: 1px solid rgba(117, 117, 117, 0.466);
+  overflow: auto;
 }
 .readme code {
   font-family: Consolas, "courier new";
