@@ -20,7 +20,7 @@ export function Repos() {
         queryKey: ['todos'], queryFn: async () => {
             const response = await axios.get(githubApiUrl);
             return response.data;
-        }, 
+        }, staleTime: 60000
     })
 
     return (

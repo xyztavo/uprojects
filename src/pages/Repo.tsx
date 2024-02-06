@@ -11,8 +11,6 @@ import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 import remarkRehype from 'remark-rehype'
 
-
-
 export function Repo() {
 
     const params = useParams()
@@ -26,14 +24,14 @@ export function Repo() {
         queryKey: ['todos'], queryFn: async () => {
             const response = await axios.get(githubUrl);
             return response.data;
-        },
+        }, staleTime: 60000
     })
 
     const { data: readmeData, isFetching: isReadmeFetching } = useQuery({
         queryKey: ['readme'], queryFn: async () => {
             const response = await axios.get(readmeRepoUrl)
             return response.data;
-        }
+        }, staleTime: 60000
     })
 
     return (
