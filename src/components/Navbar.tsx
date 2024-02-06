@@ -37,7 +37,7 @@ export function Navbar() {
 
                     <SheetContent side={"left"} className="flex justify-center">
                         <SheetHeader>
-                            <SheetTitle><Button variant={"ghost"} className="text-3xl w-[200px] my-3">Projects Hub</Button></SheetTitle>
+                            <SheetTitle><Link to="/"><Button variant={"ghost"} className="text-3xl w-[200px] my-3">Projects Hub</Button></Link></SheetTitle>
                             <SheetDescription>
                                 <div className="scale-[1.3] flex justify-center">
                                     <ModeToggle />
