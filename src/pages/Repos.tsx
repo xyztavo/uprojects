@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/card"
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom'
+import { Skeleton } from '@/components/ui/skeleton';
 
 const githubApiUrl = import.meta.env.VITE_GITHUB_URL
 
@@ -19,12 +20,21 @@ export function Repos() {
         queryKey: ['todos'], queryFn: async () => {
             const response = await axios.get(githubApiUrl);
             return response.data;
-        },
+        }, 
     })
 
     return (
         <div>
-            {isFetching ? <p>Loading...</p> :
+            {isFetching ? <>
+                <div className='flex justify-center gap-10 p-10 flex-row min-w-54 flex-wrap'>
+                    <Skeleton className='w-[15rem] h-[20rem] ' />
+                    <Skeleton className='w-[15rem] h-[20rem]' />
+                    <Skeleton className='w-[15rem] h-[20rem] ' />
+                    <Skeleton className='w-[15rem] h-[20rem] ' />
+                    <Skeleton className='w-[15rem] h-[20rem] ' />
+                </div>
+            </>
+                :
                 <div className='flex  justify-center gap-10 p-10 flex-row min-w-54 flex-wrap'>
                     {repos?.map((repo: RepositoryType) => {
                         return (
