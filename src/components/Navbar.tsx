@@ -21,7 +21,7 @@ export function Navbar() {
     return (
         <div className="flex flex-row justify-between items-center p-4 text-2xl border-b-2">
             <Link to="/">
-                <Button variant={"ghost"} className="text-3xl">Project hub</Button>
+                <Button variant={"ghost"} className="text-3xl">Projects Hub</Button>
             </Link>
             <div className="hidden gap-8 md:flex lg:flex">
                 <div className="scale-[1.2] flex justify-center">
@@ -37,7 +37,7 @@ export function Navbar() {
                     </SheetTrigger>
                     <SheetContent side={"left"} className="flex justify-center">
                         <SheetHeader>
-                            <SheetTitle className="text-3xl mb-10">Projects Hub</SheetTitle>
+                            <SheetTitle><Button variant={"ghost"} className="text-3xl w-[200px] my-3">Projects Hub</Button></SheetTitle>
                             <SheetDescription>
                                 <div className="scale-[1.3] flex justify-center">
                                     <ModeToggle />
