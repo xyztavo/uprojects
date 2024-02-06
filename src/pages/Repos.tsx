@@ -20,41 +20,42 @@ export function Repos() {
         queryKey: ['todos'], queryFn: async () => {
             const response = await axios.get(githubApiUrl);
             return response.data;
-        }, staleTime: 60000
+        }, staleTime: 60000, refetchOnMount: 'always',
     })
 
     return (
         <div>
-            {isFetching ? <>
+            {isFetching ?
                 <div className='flex justify-center gap-10 p-10 flex-row min-w-54 flex-wrap'>
                     <Skeleton className='w-[15rem] h-[20rem] ' />
                     <Skeleton className='w-[15rem] h-[20rem]' />
                     <Skeleton className='w-[15rem] h-[20rem] ' />
                     <Skeleton className='w-[15rem] h-[20rem] ' />
                     <Skeleton className='w-[15rem] h-[20rem] ' />
+                    <Skeleton className='w-[15rem] h-[20rem] ' />
                 </div>
-            </>
+
                 :
-                <div className='flex  justify-center gap-10 p-10 flex-row min-w-54 flex-wrap'>
+
+                <div key='card' className='flex  justify-center gap-10 p-10 flex-row min-w-54 flex-wrap'>
                     {repos?.map((repo: RepositoryType) => {
                         return (
-                            <div>
-                                <Card className='w-[15rem] h-[20rem] text-center m-auto flex flex-col justify-center'>
-                                    <CardHeader>
-                                        <CardTitle key={repo.name}>{repo.name}</CardTitle>
-                                        <CardDescription key={repo.full_name}>{repo.full_name}</CardDescription>
-                                    </CardHeader>
-                                    <CardContent key={repo.description}>
-                                        {repo.description}
-                                    </CardContent>
-                                    <CardFooter>
-                                        <Link className='m-auto' key={repo.full_name} to={`repos/${repo.full_name}`}><Button>Details</Button></Link>
-                                    </CardFooter>
-                                </Card>
-                            </div>
+                            <Card key={repo.full_name} className='w-[15rem] h-[20rem] text-center m-auto flex flex-col justify-center'>
+                                <CardHeader>
+                                    <CardTitle >{repo.name}</CardTitle>
+                                    <CardDescription>{repo.full_name}</CardDescription>
+                                </CardHeader>
+                                <CardContent>
+                                    {repo.description}
+                                </CardContent>
+                                <CardFooter>
+                                    <Link className='m-auto' to={`repos/${repo.full_name}`}><Button>Details</Button></Link>
+                                </CardFooter>
+                            </Card>
                         )
                     })}
-                </div>}
+                </div>
+            }
         </div>
     )
 }

@@ -24,14 +24,14 @@ export function Repo() {
         queryKey: ['todos'], queryFn: async () => {
             const response = await axios.get(githubUrl);
             return response.data;
-        }, staleTime: 60000
+        }, staleTime: 60000, refetchOnMount: 'always',
     })
 
     const { data: readmeData, isFetching: isReadmeFetching } = useQuery({
         queryKey: ['readme'], queryFn: async () => {
             const response = await axios.get(readmeRepoUrl)
             return response.data;
-        }, staleTime: 60000
+        }, staleTime: 60000, refetchOnMount: 'always',
     })
 
     return (
@@ -54,14 +54,15 @@ export function Repo() {
                 </>
                 :
                 <>
-                    <div className='flex flex-col p-4 text-xl m-auto text-center'>
+                    <div key={repo.full_name} className='flex flex-col p-4 text-xl m-auto text-center'>
                         <div className='py-3'>{repo.full_name}</div>
                         <div className='flex flex-row gap-4 m-auto'>
-                            <a key={repo.html_url} href={repo.html_url} target='_blank'>
+
+                            <a href={repo.html_url} target='_blank'>
                                 <Button size={'lg'}>Github</Button>
                             </a>
                             {repo.homepage &&
-                                <a key={repo.homepage} href={repo.homepage} target='_blank'>
+                                <a href={repo.homepage} target='_blank'>
                                     <Button size={'lg'} variant={'outline'}>Live Site</Button>
                                 </a>}
 
