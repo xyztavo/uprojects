@@ -95,6 +95,6 @@ example:
 
 ## 📖 License
 
-This project has [MIT](./MIT-LICENSE.txt) license.
+This project has [MIT](https://github.com/gustafer/projects-hub/blob/main/MIT-LICENSE.txt) license.
 
 ---
