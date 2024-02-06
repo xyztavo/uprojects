@@ -30,14 +30,16 @@ export function Navbar() {
                 <Sheet onOpenChange={setOpen}>
                     <SheetTrigger>
                         <div className="border rounded-md">
-                            <Hamburger size={20} duration={0.25} toggled={isOpen}  />
+                            <Hamburger size={20} duration={0.25} toggled={isOpen} />
                         </div>
                     </SheetTrigger>
                     <SheetContent side={"left"}>
                         <SheetHeader>
                             <SheetTitle className="text-3xl mb-10">Projects Hub</SheetTitle>
                             <SheetDescription>
+                                <div className="scale-[1.3]">
                                     <ModeToggle />
+                                </div>
                             </SheetDescription>
                         </SheetHeader>
                     </SheetContent>
