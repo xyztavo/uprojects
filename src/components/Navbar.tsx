@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from "./ui/button";
 import {
     Sheet,
+    SheetClose,
     SheetContent,
     SheetDescription,
     SheetHeader,
@@ -32,12 +33,14 @@ export function Navbar() {
             <div className="flex md:hidden lg:hidden">
                 <Sheet onOpenChange={setOpen}>
                     <SheetTrigger className="flex w-[3rem] h-[auto] border rounded-md items-center justify-center m-auto">
-                            <Hamburger size={15} duration={0.25} toggled={isOpen} />
+                        <Hamburger size={15} duration={0.25} toggled={isOpen} />
                     </SheetTrigger>
 
                     <SheetContent side={"left"} className="flex justify-center">
                         <SheetHeader>
-                            <SheetTitle><Link to="/"><Button variant={"ghost"} className="text-3xl w-[200px] my-3">Projects Hub</Button></Link></SheetTitle>
+                            <SheetClose asChild>
+                                <Link to="/"><Button variant={"ghost"} className="text-3xl w-[200px] my-3" >Projects Hub</Button></Link>
+                            </SheetClose>
                             <SheetDescription>
                                 <div className="scale-[1.3] flex justify-center">
                                     <ModeToggle />
