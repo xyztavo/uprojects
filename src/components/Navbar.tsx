@@ -19,12 +19,12 @@ export function Navbar() {
 
 
     return (
-        <div className="flex flex-row justify-between items-center p-2 text-2xl border-b-2 ">
+        <div className="flex flex-row justify-between items-center p-2 text-2xl border-b-2 pr-2 pb-2">
             <Link to="/">
                 <Button variant={"ghost"} className="text-3xl">Projects Hub</Button>
             </Link>
-            <div className="hidden gap-8 md:flex lg:flex">
-                <div className="flex justify-center items-center m-auto">
+            <div className="hidden gap-8 md:flex lg:flex ">
+                <div className="flex justify-center items-center m-auto h-[50px]">
                     <ModeToggle />
                 </div>
             </div>
