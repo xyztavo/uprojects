@@ -4,6 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query"
 import { Outlet } from "react-router-dom";
 
 import { queryClient } from "./services/queryClient"
+import { Footer } from "./components/Footer";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <Navbar />
         <Outlet />
+        <Footer / >
       </QueryClientProvider>
     </ThemeProvider>
   )

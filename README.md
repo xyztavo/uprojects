@@ -1,4 +1,4 @@
-<h1 align="center"> Projects Hub </h1>
+<h1 align="center"> U Projects </h1>
 
 <p align="center">
 This is a project to display my repositories of github, it uses some really cool stuff. 

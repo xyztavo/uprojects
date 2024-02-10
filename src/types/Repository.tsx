@@ -5,4 +5,5 @@ type RepositoryType = {
     full_name: string;
     homepage: string;
 }
+
 export default RepositoryType
