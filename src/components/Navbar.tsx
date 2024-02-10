@@ -22,7 +22,7 @@ export function Navbar() {
         <div className="flex flex-row justify-between items-center p-2 text-2xl border-b-2 pr-2 pb-2">
             <Link to="/" className="flex flex-row">
                 <Button variant={"ghost"} className="text-3xl gap-3">
-                    <img src="src\assets\logo.svg" width={25} />
+                    <img src="logo.svg" width={25} />
                     U Projects
                 </Button>
             </Link>
@@ -43,7 +43,7 @@ export function Navbar() {
                             <SheetClose asChild>
                                 <Link to="/" className="flex flex-row">
                                     <Button variant={"ghost"} className="text-4xl gap-3">
-                                        <img src="src\assets\logo.svg" width={28} />
+                                        <img src="logo.svg" width={28} />
                                         U Projects
                                     </Button>
                                 </Link>
