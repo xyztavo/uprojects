@@ -15,7 +15,7 @@ export function PinnedRepos() {
 
     return (
         <>
-            {pinnedRepos && pinnedRepos.data.user.pinnedItems.totalCount > 0 && <h1 className='text-2xl text-center py-10'>Pinned Repositories:</h1>}
+            <h1 className='text-2xl text-center py-10'>Pinned Repositories:</h1>
             <div className='flex  justify-center gap-10 flex-row min-w-54 flex-wrap'>
                 {isPinnedFetching ?
                     <div className='flex justify-center gap-10 flex-row min-w-54 flex-wrap'>
