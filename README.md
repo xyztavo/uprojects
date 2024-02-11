@@ -78,13 +78,15 @@ yarn dev
 
 ## 🔖 Usage
 
-### Its as simple as going to .env and changing the github api URL to yours.
+### Its as simple as going to .envEXAMPLE and changing the github user and [BEARER](https://docs.github.com/en/graphql/guides/forming-calls-with-graphql) to yours if you wish to use graphql to get the pinned repos.
 
 example:
 
 ```
- VITE_GITHUB_URL=https://api.github.com/users/YOURGHNAME/repos
+ VITE_GITHUB_USER=gustafer
 ```
+
+### now, simply remove the EXAMPLE from .envEXAMPLE
 
 ## 🎨 Customization
 
