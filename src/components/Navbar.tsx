@@ -1,5 +1,5 @@
 import { ModeToggle } from "./mode-toggle";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from "./ui/button";
 import {
     Sheet,
@@ -10,13 +10,36 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet"
 import { Squash as Hamburger } from 'hamburger-react'
+import { Input } from "@/components/ui/input"
+
 import { useState } from "react";
+import { Search } from "lucide-react";
+
+import {
+    Dialog,
+    DialogClose,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
 
 
 
 export function Navbar() {
     const [isOpen, setOpen] = useState(false)
+    const [search, setSearch] = useState('')
 
+    const navigate = useNavigate()
+
+
+    const handleSubmit = (e: any) => {
+        e.preventDefault()
+
+        navigate(`/search?q=${search}`)
+        setSearch('')
+    }
 
     return (
         <div className="flex flex-row justify-between items-center p-2 text-2xl border-b-2 pr-2 pb-2 sticky top-0 z-50 w-full border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -37,12 +60,30 @@ export function Navbar() {
                         All Repos
                     </Button>
                 </Link>
+                <form className="flex space-x-2" onSubmit={handleSubmit}>
+                    <Input placeholder="Search a repo" value={search} onChange={(e) => setSearch(e.target.value)} />
+                    <Button variant={"outline"}><Search /></Button>
+                </form>
                 <div className="flex justify-center items-center m-auto h-[50px]">
                     <ModeToggle />
                 </div>
             </div>
 
-            <div className="flex md:hidden lg:hidden">
+            <div className="flex md:hidden lg:hidden justify-center items-center gap-3">
+                <Dialog>
+                    <DialogTrigger><Button variant={"outline"} className="flex w-[50px] h-[50px] border rounded-md items-center justify-center m-auto"><Search /></Button></DialogTrigger>
+                    <DialogContent>
+                        <DialogHeader>
+                            <form className="flex space-x-2 my-4" onSubmit={handleSubmit}>
+                                <Input placeholder="Search a repo" value={search} onChange={(e) => setSearch(e.target.value)} />
+                                <DialogClose asChild>
+                                    <Button variant={"outline"}><Search /></Button>
+                                </DialogClose>
+                            </form>
+                        </DialogHeader>
+                    </DialogContent>
+                </Dialog>
+
                 <Sheet onOpenChange={setOpen}>
                     <SheetTrigger className="flex w-[3rem] h-[auto] border rounded-md items-center justify-center m-auto">
                         <Hamburger size={15} duration={0.25} toggled={isOpen} />
@@ -66,7 +107,6 @@ export function Navbar() {
                             </div>
                             <SheetDescription>
                                 <div className="flex flex-col items-start gap-3 justify-center text-2xl text-accent-foreground">
-
                                     <SheetClose asChild>
                                         <Link to="pinnedrepos" className="">
                                             Pinned Repos
