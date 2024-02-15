@@ -75,7 +75,7 @@ export function Navbar() {
                             <form className="flex space-x-2 my-4" onSubmit={handleSubmit}>
                                 <Input placeholder="Search a repo" value={search} onChange={(e) => setSearch(e.target.value)} />
                                 <DialogClose asChild>
-                                    <Button variant={"outline"}><Search /></Button>
+                                    <Button variant={"outline"} type="submit"><Search /></Button>
                                 </DialogClose>
                             </form>
                         </DialogHeader>
