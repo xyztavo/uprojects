@@ -12,7 +12,7 @@ import {
 
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom'
-import { Skeleton } from '@/components/ui/skeleton';
+import { SkeletonGroup } from '@/components/ui/skeleton-group';
 
 const githubUser = import.meta.env.VITE_GITHUB_USER
 
@@ -35,12 +35,7 @@ export function Repos() {
             <div className='flex  justify-center gap-10 flex-row min-w-54 flex-wrap'>
                 {isFetching ?
                     <div className='flex justify-center gap-10 flex-row min-w-54 flex-wrap'>
-                        <Skeleton className='w-[15rem] h-[20rem] ' />
-                        <Skeleton className='w-[15rem] h-[20rem]' />
-                        <Skeleton className='w-[15rem] h-[20rem] ' />
-                        <Skeleton className='w-[15rem] h-[20rem] ' />
-                        <Skeleton className='w-[15rem] h-[20rem] ' />
-                        <Skeleton className='w-[15rem] h-[20rem] ' />
+                       <SkeletonGroup />
                     </div>
                     :
                     repos?.map((repo: RepositoryType) => {
