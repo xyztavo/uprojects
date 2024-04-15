@@ -30,7 +30,7 @@ export function Repos() {
    
 
     return (
-        <div>
+        <div className='p-4'>
             <h1 className='text-2xl text-center py-10'>All Repositories:</h1>
             <div className='flex  justify-center gap-10 flex-row min-w-54 flex-wrap'>
                 {isFetching ?
