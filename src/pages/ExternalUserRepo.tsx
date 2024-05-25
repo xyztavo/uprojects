@@ -8,7 +8,6 @@ export function ExternalUser() {
 
   return (
     <div className="flex flex-col justify-center items-center my-4">
-      <h1 className="text-2xl"><span className="font-semibold">{githubname}</span> Repositories: </h1>
       <Repos githubUser={githubname} isBearerAuth={false} />
     </div>
   );
