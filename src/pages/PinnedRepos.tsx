@@ -27,8 +27,8 @@ export function PinnedRepos({ githubUser }: { githubUser: string }) {
   return (
     pinnedRepos && 
       <div className="p-4">
-        <h1 className="block text-2xl text-center py-10">
-          Pinned Repositories:
+        <h1 className="text-2xl text-center py-10">
+          <span className="text-2xl font-semibold">{githubUser}</span> Pinned Repositories:
         </h1>
         <div className="flex justify-center gap-10 flex-row min-w-54 flex-wrap">
           {pinnedRepos.data.user.pinnedItems.edges.map((e) => (

@@ -39,7 +39,7 @@ export function Navbar() {
     }
 
     return (
-        <div className="flex flex-row justify-between items-center p-2 text-2xl border-b-2 pr-2 pb-2 sticky top-0 z-50 w-full border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="flex flex-row p-1 justify-between items-center text-2xl border-b-2 pr-2 sticky top-0 z-50 w-full border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
             <Link to="/" className="flex flex-row">
                 <Button variant={"ghost"} className="text-3xl gap-3 bg-transparent">
                     <img src="/logo.svg" width={25} />
