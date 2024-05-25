@@ -17,7 +17,7 @@ export function Repos({
 
   const {
     data: repos,
-    isFetching,
+    isLoading,
     error,
   } = useQuery({
     queryKey: ["repos"],
@@ -47,25 +47,32 @@ export function Repos({
       </div>
     );
 
-  return isFetching ? (
-    <SkeletonGroup />
-  ) : (
-    <div className="p-4">
+  if (isLoading) return <SkeletonGroup />;
+
+  return (
+    <div className="flex flex-col items-center justify-center gap-4 p-4">
+      <h1 className="text-2xl"><span className="font-semibold">{githubUser}</span> Repositories:</h1>
       <div className="flex justify-center flex-row flex-wrap gap-4 ">
         {repos?.map((repo: RepositoryType) => {
           return (
             <div
               key={repo.full_name}
-              className="w-[12rem]  h-[15rem] border rounded-md flex flex-col items-center justify-between p-4 text-s overflow-y-auto overflow-x-hidden"
+              className="w-[12rem] h-[15rem] border rounded-md flex flex-col items-center justify-between p-4 text-s overflow-y-auto overflow-x-hidden"
             >
               <div className="flex flex-col justify-center items-center my-2">
-                <div className="text-xl font-semibold text-center">{repo.name}</div>
-                <div className="text-muted-foreground text-xs font-semibold text-center">{repo.full_name}</div>
+                <div className="text-xl font-semibold text-center">
+                  {repo.name}
+                </div>
+                <div className="text-muted-foreground text-xs font-semibold text-center">
+                  {repo.full_name}
+                </div>
               </div>
-              <div className="flex justify-center items-center text-[13px] text-center">{repo.description}</div>
+              <div className="flex justify-center items-center text-[13px] text-center">
+                {repo.description}
+              </div>
               <div>
                 <Link className="m-auto" to={`/repos/${repo.full_name}`}>
-                  <Button variant={'secondary'}>Details</Button>
+                  <Button variant={"secondary"}>Details</Button>
                 </Link>
               </div>
             </div>
