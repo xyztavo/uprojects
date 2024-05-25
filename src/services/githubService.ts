@@ -2,7 +2,7 @@ import { IRepositoryTypeQL } from "@/types/RepositoryTypeQL";
 import axios from "axios";
 
 const githubAuthBearer = import.meta.env.VITE_GITHUB_BEARER && import.meta.env.VITE_GITHUB_BEARER
-const githubUser = import.meta.env.VITE_GITHUB_USER
+
 
 const githubAxios = axios.create({
     baseURL: 'https://api.github.com',
@@ -12,8 +12,7 @@ const githubAxios = axios.create({
     }
 })
 
-export const getQlRepositories = async () => {
-    
+export const getQlRepositories = async (githubUser: string) => {
     const graphqlQuery = {
         "query": `query {
             user(login: "${githubUser}") {

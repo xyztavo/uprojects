@@ -14,24 +14,22 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom'
 import { SkeletonGroup } from '@/components/ui/skeleton-group';
 
-const githubUser = import.meta.env.VITE_GITHUB_USER
-
-const githubApiUrl = `https://api.github.com/users/${githubUser}/repos`
 
 
-export function Repos() {
-    const { data: repos, isFetching } = useQuery({
-        queryKey: ['todos'], queryFn: async () => {
-            const response = await axios.get(githubApiUrl);
+export function Repos({githubUser, isBearerAuth}: { githubUser: string, isBearerAuth: boolean}) {
+    const bearerToken = import.meta.env.VITE_GITHUB_BEARER;
+    
+    const { data: repos, isFetching, error } = useQuery({
+        queryKey: ['repos'], queryFn: async () => {
+            const response = await axios.get(`https://api.github.com/users/${githubUser}/repos`, isBearerAuth ? { headers: { Authorization: `Bearer ${bearerToken}`}} : {});
             return response.data;
-        }, staleTime: 60000, refetchOnMount: 'always',
+        }, staleTime: 60000, refetchOnMount: 'always', retry: false
     })
 
-   
+    if (error) return <div className='flex flex-col justify-center items-center'> <h1 className='text-2xl my-4'>User not found or rate limit. </h1> <h1 className='text-muted-foreground'>(you can fix this by cloning this project and providing a github auth token.)</h1></div>
 
     return (
         <div className='p-4'>
-            <h1 className='text-2xl text-center py-10'>All Repositories:</h1>
             <div className='flex  justify-center gap-10 flex-row min-w-54 flex-wrap'>
                 {isFetching ?
                     <div className='flex justify-center gap-10 flex-row min-w-54 flex-wrap'>

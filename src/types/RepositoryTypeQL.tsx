@@ -22,5 +22,5 @@ interface IRepositoryTypeQlDataUserPinnedItemsEdgeNode {
     name: string;
     node: string;
     nameWithOwner: string;
-    description: String;
+    description: string;
 }

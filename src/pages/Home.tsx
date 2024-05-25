@@ -2,10 +2,13 @@ import { PinnedRepos } from "./PinnedRepos";
 import { Repos } from "./Repos";
 
 export function Home() {
-    return (
-        <>
-            <PinnedRepos />
-            <Repos />
-        </>
-    )
+  const githubUser = import.meta.env.VITE_GITHUB_USER;
+
+  return (
+    <div className="flex flex-col justify-center items-center gap-4">
+      <PinnedRepos githubUser={githubUser} />
+      <h1 className="text-2xl">{githubUser} Repositories:</h1>
+      <Repos githubUser={githubUser} isBearerAuth />
+    </div>
+  );
 }

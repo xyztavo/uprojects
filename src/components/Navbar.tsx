@@ -32,7 +32,7 @@ export function Navbar() {
     const navigate = useNavigate()
 
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault()
         navigate(`/search?q=${search}`)
         setSearch('')
