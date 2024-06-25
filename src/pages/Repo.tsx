@@ -18,7 +18,11 @@ export function Repo() {
   const githubUrl = `https://api.github.com/repos/${currentRepository}`;
   const readmeRepoUrl = `https://api.github.com/repos/${currentRepository}/contents/README.md`;
 
-  const { data: repo, isLoading } = useQuery({
+  const {
+    data: repo,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ["todos"],
     queryFn: async () => {
       const response = await axios.get(githubUrl);
@@ -26,9 +30,14 @@ export function Repo() {
     },
     staleTime: 60000,
     refetchOnMount: "always",
+    retry: false,
   });
 
-  const { data: readmeData, isFetching: isReadmeFetching } = useQuery({
+  const {
+    data: readmeData,
+    isFetching: isReadmeFetching,
+    error: isErrorReadme,
+  } = useQuery({
     queryKey: ["readme"],
     queryFn: async () => {
       const response = await axios.get(readmeRepoUrl);
@@ -36,9 +45,12 @@ export function Repo() {
     },
     staleTime: 60000,
     refetchOnMount: "always",
+    retry: false,
   });
 
-  if (isLoading) return <Loading />;
+  if (error) return <div className="my-4 ">no repo found</div>
+
+  if (isLoading || isReadmeFetching) return <Loading />;
 
   return (
     <div>
@@ -60,10 +72,10 @@ export function Repo() {
           )}
         </div>
       </div>
-      <div className="flex flex-col m-auto text-xl max-w-[50rem]">
+      <div className="flex flex-col m-auto text-xl max-w-[50rem] gap-4">
         <h1 className="pt-4 text-center font-bold">Readme.md :</h1>
-        {isReadmeFetching ? (
-          <Loading />
+        {isErrorReadme ? (
+          <div className="text-center">No README.md found.</div>
         ) : (
           <>
             <Markdown
