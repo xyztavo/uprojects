@@ -8,14 +8,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { getQlRepositories } from "@/services/githubService";
+import { getPinnedRepositories } from "@/services/githubService";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 
 export function PinnedRepos({ githubUser }: { githubUser: string }) {
   const { data: pinnedRepos, isLoading, error } = useQuery({
     queryKey: ["pinned"],
-    queryFn: () => getQlRepositories(githubUser),
+    queryFn: () => getPinnedRepositories(githubUser),
     staleTime: 60000,
     refetchOnMount: "always",
     retry: false
