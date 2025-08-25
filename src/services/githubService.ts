@@ -1,39 +1,13 @@
 import { IRepositoryTypeQL } from "@/types/RepositoryTypeQL";
-import axios from "axios";
 
-const githubAuthBearer = import.meta.env.VITE_GITHUB_BEARER && import.meta.env.VITE_GITHUB_BEARER
+export const getPinnedRepositories = async (githubUser: string) => {
+    const response = await fetch(`https://pinned.berrysauce.dev/get/${githubUser}`);
 
-
-const githubAxios = axios.create({
-    baseURL: 'https://api.github.com',
-    headers: {
-        "content-type": "application/json",
-        "Authorization": `Bearer ${githubAuthBearer}`,
-    }
-})
-
-export const getQlRepositories = async (githubUser: string) => {
-    const graphqlQuery = {
-        "query": `query {
-            user(login: "${githubUser}") {
-              pinnedItems(first: 6) {
-                totalCount
-                edges {
-                  node {
-                    ... on Repository {
-                      id
-                      name
-                      nameWithOwner
-                      description
-                    }
-                  }
-                }
-              }
-            }
-          }`,
+    if (response.ok) {
+        throw new Error("Failed to get pinned repositories");
     }
 
-    const response = await githubAxios.post<IRepositoryTypeQL>('graphql', graphqlQuery);
+    const body: IRepositoryTypeQL = await response.json();
 
-    return response.data;
+    return body;
 }
