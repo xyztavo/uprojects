@@ -13,11 +13,8 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { X } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
-export function FilteredRepos({
-  isBearerAuth,
-}: {
-  isBearerAuth: false | true;
-}) {
+
+export function FilteredRepos() {
   const [searchParams] = useSearchParams();
   const bearerToken = import.meta.env.VITE_GITHUB_BEARER;
   const query = searchParams.get("q") as string;
@@ -33,9 +30,7 @@ export function FilteredRepos({
     queryFn: async () => {
       const response = await axios.get(
         githubApiUrl,
-        isBearerAuth
-          ? { headers: { Authorization: `Bearer ${bearerToken}` } }
-          : {}
+        { headers: { Authorization: `Bearer ${bearerToken}` } }
       );
       return response.data;
     },
