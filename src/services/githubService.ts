@@ -1,4 +1,6 @@
-import { IRepositoryTypeQL } from "@/types/RepositoryTypeQL";
+import { IPinnedRepository } from "@/types/IPinnedRepository";
+
+type IGetPinnedRepository = Omit<IPinnedRepository, "nameWithOwner">;
 
 export const getPinnedRepositories = async (githubUser: string) => {
     const response = await fetch(`https://pinned.berrysauce.dev/get/${githubUser}`);
@@ -7,7 +9,11 @@ export const getPinnedRepositories = async (githubUser: string) => {
         throw new Error("Failed to get pinned repositories");
     }
 
-    const body: IRepositoryTypeQL = await response.json();
+    const body: IGetPinnedRepository[] = await response.json();
+    const data = body.map((pinnedRepo) => ({
+        ...pinnedRepo,
+        nameWithOwner: `${pinnedRepo.author}/${pinnedRepo.name}`
+    }));
 
-    return body;
+    return data;
 }

@@ -31,18 +31,18 @@ export function PinnedRepos({ githubUser }: { githubUser: string }) {
           <span className="text-2xl font-semibold">{githubUser}</span> Pinned Repositories:
         </h1>
         <div className="flex justify-center gap-10 flex-row min-w-54 flex-wrap">
-          {pinnedRepos.data.user.pinnedItems.edges.map((e) => (
+          {pinnedRepos.map((pinnedRepo) => (
             <Card
-              key={e.node.name}
+              key={pinnedRepo}
               className="w-[15rem] h-[20rem] text-center flex flex-col justify-center"
             >
               <CardHeader>
-                <CardTitle>{e.node.name}</CardTitle>
-                <CardDescription>{e.node.nameWithOwner}</CardDescription>
+                <CardTitle>{pinnedRepo.name}</CardTitle>
+                <CardDescription>{pinnedRepo.nameWithOwner}</CardDescription>
               </CardHeader>
-              <CardContent>{e.node.description}</CardContent>
+              <CardContent>{pinnedRepo.description}</CardContent>
               <CardFooter>
-                <Link className="m-auto" to={`/repos/${e.node.nameWithOwner}`}>
+                <Link className="m-auto" to={`/repos/${pinnedRepo.nameWithOwner}`}>
                   <Button>Details</Button>
                 </Link>
               </CardFooter>
