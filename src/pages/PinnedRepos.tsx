@@ -33,7 +33,7 @@ export function PinnedRepos({ githubUser }: { githubUser: string }) {
         <div className="flex justify-center gap-10 flex-row min-w-54 flex-wrap">
           {pinnedRepos.map((pinnedRepo) => (
             <Card
-              key={pinnedRepo}
+              key={pinnedRepo.name}
               className="w-[15rem] h-[20rem] text-center flex flex-col justify-center"
             >
               <CardHeader>
