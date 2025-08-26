@@ -8,10 +8,8 @@ import { SkeletonGroup } from "@/components/ui/skeleton-group";
 
 export function Repos({
   githubUser,
-  isBearerAuth,
 }: {
   githubUser: string;
-  isBearerAuth: boolean;
 }) {
   const bearerToken = import.meta.env.VITE_GITHUB_BEARER;
 
@@ -24,9 +22,7 @@ export function Repos({
     queryFn: async () => {
       const response = await axios.get(
         `https://api.github.com/users/${githubUser}/repos`,
-        isBearerAuth
-          ? { headers: { Authorization: `Bearer ${bearerToken}` } }
-          : {}
+        { headers: { Authorization: `Bearer ${bearerToken}` } }
       );
       return response.data;
     },
