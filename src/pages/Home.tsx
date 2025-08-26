@@ -7,7 +7,7 @@ export function Home() {
   return (
     <div className="flex flex-col justify-center items-center gap-4">
       <PinnedRepos githubUser={githubUser} />
-      <Repos githubUser={githubUser} isBearerAuth />
+      <Repos githubUser={githubUser} />
     </div>
   );
 }
