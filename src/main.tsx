@@ -20,10 +20,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route element={<App />}>
           <Route path="/" element={<Home />} />
           <Route path="/:githubname" element={<ExternalUser />} />
-          <Route path="repos" element={<Repos githubUser={githubUser} isBearerAuth />} />
+          <Route path="repos" element={<Repos githubUser={githubUser} />} />
           <Route path="pinnedrepos" element={<PinnedRepos githubUser={githubUser} />} />
           <Route path="repos/*" element={<Repo />} />
-          <Route path="search" element={<FilteredRepos isBearerAuth />} />
+          <Route path="search" element={<FilteredRepos />} />
         </Route>
       </Routes>
     </BrowserRouter>
