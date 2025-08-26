@@ -11,6 +11,12 @@ import rehypeRaw from "rehype-raw";
 import remarkRehype from "remark-rehype";
 import { Loading } from "@/components/Loading";
 
+const authenticationParams = {
+    headers: {
+      Authorization: `Bearer ${import.meta.env.VITE_GITHUB_BEARER}`,
+    },
+}
+
 export function Repo() {
   const params = useParams();
   const currentRepository = params["*"];
@@ -25,7 +31,7 @@ export function Repo() {
   } = useQuery({
     queryKey: ["todos"],
     queryFn: async () => {
-      const response = await axios.get(githubUrl);
+      const response = await axios.get(githubUrl, authenticationParams);
       return response.data;
     },
     staleTime: 60000,
@@ -40,7 +46,7 @@ export function Repo() {
   } = useQuery({
     queryKey: ["readme"],
     queryFn: async () => {
-      const response = await axios.get(readmeRepoUrl);
+      const response = await axios.get(readmeRepoUrl, authenticationParams);
       return response.data;
     },
     staleTime: 60000,
